@@ -25,7 +25,7 @@ class SimpleCovReportTest < Test::Unit::TestCase
     Coverband::Reporters::ConsoleReport.expects(:current_root).returns('./test/unit')
 
     @redis.sadd(BASE_KEY, 'test/unit/dog.rb')
-    @store.send(:store_map, "#{BASE_KEY}.test/unit/dog.rb", example_hash)
+    @store.send(:store_map, Digest::MD5.file('test/unit/dog.rb'), "#{BASE_KEY}.test/unit/dog.rb", example_hash)
 
     report = Coverband::Reporters::ConsoleReport.report(@store)
     expected = {"test/unit/dog.rb"=>[1, 2, nil, nil, nil, nil, nil]}

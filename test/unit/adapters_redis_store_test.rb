@@ -1,16 +1,7 @@
 # frozen_string_literal: true
 
 require File.expand_path('../test_helper', File.dirname(__FILE__))
-
-class DummyChecksumGenerator
-  def initialize(checksum)
-    @checksum = checksum
-  end
-
-  def generate(file)
-    @checksum
-  end
-end
+require File.expand_path('./dummy_checksum_generator', File.dirname(__FILE__))
 
 class RedisTest < Test::Unit::TestCase
   BASE_KEY = Coverband::Adapters::RedisStore::BASE_KEY
